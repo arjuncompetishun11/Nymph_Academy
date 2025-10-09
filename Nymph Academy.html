@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll at Nymph Academy</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: linear-gradient(to bottom, #e3f2fd, #fff); color: #333; }
+        header { background: #1976d2; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 50px; } /* Replace src with actual logo URL */
+        nav ul { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
+        nav a { color: white; text-decoration: none; transition: color 0.3s; }
+        nav a:hover { color: #bbdefb; }
+        .hero { text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #42a5f5, #1976d2); color: white; animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .testimonials { padding: 3rem 2rem; max-width: 1200px; margin: auto; background: linear-gradient(to bottom, #f5f5f5, #fff); }
+        .testimonials h2 { text-align: center; color: #1976d2; margin-bottom: 2rem; font-size: 2.5rem; }
+        .slider-container { position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); background: white; }
+        .slides { display: flex; transition: transform 0.6s ease-in-out; }
+        .slide { min-width: 100%; padding: 2rem; text-align: center; opacity: 0.7; transform: scale(0.95); transition: opacity 0.6s ease, transform 0.6s ease; background: linear-gradient(145deg, #ffffff, #f0f8ff); position: relative; }
+        .slides.active-slide .slide { opacity: 0; transform: scale(0.95); }
+        .slides.active-slide .slide.active { opacity: 1; transform: scale(1); }
+        .slide.active { opacity: 1; transform: scale(1); }
+        .quote-icon { font-size: 3rem; color: #42a5f5; margin-bottom: 1rem; display: block; }
+        .avatar { width: 80px; height: 80px; border-radius: 50%; background: #1976d2; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-weight: bold; }
+        .slide h3 { color: #1976d2; margin-bottom: 0.5rem; font-size: 1.3rem; }
+        .slide p { font-style: italic; line-height: 1.6; color: #555; position: relative; padding: 1rem; }
+        .slide p::before { content: '"'; font-size: 4rem; color: #42a5f5; position: absolute; left: -10px; top: -10px; }
+        .slide p::after { content: '"'; font-size: 4rem; color: #42a5f5; position: absolute; right: -10px; bottom: -20px; }
+        .controls { text-align: center; margin-top: 1rem; }
+        .controls button { background: linear-gradient(145deg, #1976d2, #1565c0); color: white; border: none; padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 25px; margin: 0 0.5rem; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 8px rgba(25,118,210,0.3); }
+        .controls button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(25,118,210,0.4); }
+        .dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; cursor: pointer; transition: background 0.3s; }
+        .dot.active { background: #1976d2; }
+        .form-section { padding: 2rem; max-width: 600px; margin: auto; background: white; border-radius: 15px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); animation: fadeIn 1s ease-in 0.5s both; }
+        form { display: flex; flex-direction: column; gap: 1rem; }
+        input, select, textarea { padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; transition: border-color 0.3s, box-shadow 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: #1976d2; outline: none; box-shadow: 0 0 5px rgba(25,118,210,0.3); }
+        .pay-button { background: linear-gradient(145deg, #4caf50, #45a049); color: white; font-size: 1.1rem; padding: 1rem; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+        .pay-button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(76,175,80,0.3); }
+        .hidden { display: none; }
+        #paymentStatus { color: #4caf50; text-align: center; font-weight: bold; margin-top: 1rem; padding: 1rem; background: #e8f5e8; border-radius: 8px; border: 1px solid #4caf50; }
+        footer { text-align: center; padding: 1rem; background: #1976d2; color: white; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Flinktr.ee%2Fnymphacademyschool&psig=AOvVaw3ZMeHn894VfvngI5455wqg&ust=1759920110693000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMiYprvzkZADFQAAAAAdAAAAABAE" alt="Nymph Academy Logo" class="logo"> <!-- Replace with actual logo URL -->
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#enroll">Enroll</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Welcome to Nymph Academy</h1>
+        <p>Building strong foundations for your child's future with supportive staff, day boarding, and excellent sports facilities. Join us today!</p>
+    </section>
+
+       <section id="enroll" class="form-section">
+        <h2>Enroll Now</h2>
+        <p>Complete the form below and pay the Rs. 500 application fee to submit your inquiry. Details will be emailed to the academy upon success.</p>
+        <form id="enrollForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="tel" id="number" placeholder="Phone Number" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <select id="course" required>
+                <option value="">Select Course</option>
+                <option value="primary">Primary School</option>
+                <option value="secondary">Secondary (VI-VIII)</option>
+                <option value="senior">Senior Secondary (IX-XII)</option>
+                <option value="ca">CA Preparation</option>
+                <option value="day-boarding">Day Boarding</option>
+            </select>
+            <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit" class="pay-button">Pay Rs. 500 & Submit</button>
+        </form>
+        <p id="paymentStatus" class="hidden"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Nymph Academy. All rights reserved.</p>
+    </footer>
+
+
+
+ <section id="testimonials" class="testimonials">
+        <h2>What Our Parents Say</h2>
+        <div class="slider-container">
+            <div class="slides" id="slides">
+                <div class="slide active">
+                    <span class="quote-icon">“</span>
+                    <div class="avatar">JS</div>
+                    <h3>Jigyasa Soni, VII Class</h3>
+                    <p>The entire staff of NYMPH ACADEMY is very supportive and helpful towards parents. Monthly PTM and counseling sessions provide us opportunity to discuss our kid's progress, attitude and behavior.</p>
+                </div>
+                <div class="slide">
+                    <span class="quote-icon">“</span>
+                    <div class="avatar">DS</div>
+                    <h3>Dhruv Sharma, VI Class</h3>
+                    <p>Thanks to NYMPH ACADEMY, my child got a strong foundation to his academic career in the form of primary school. He is much more active and confident now.</p>
+                </div>
+                <div class="slide">
+                    <span class="quote-icon">“</span>
+                    <div class="avatar">MC</div>
+                    <h3>Manvi Chomal, VIII Class</h3>
+                    <p>The DAY BOARDING concept of NYMPH ACADEMY is simply great. I don't have to worry about my kid's H.W. and assignments as they do it themselves with teachers help in DAY BOARDING.</p>
+                </div>
+                <div class="slide">
+                    <span class="quote-icon">“</span>
+                    <div class="avatar">KS</div>
+                    <h3>Keshav Shridhar, XII Class</h3>
+                    <p>Quite impressed with the sports infrastructure of the school. My child has enrolled himself in various games and the sport coaches are exceptionally trained.</p>
+                </div>
+                <div class="slide">
+                    <span class="quote-icon">“</span>
+                    <div class="avatar">VP</div>
+                    <h3>Varda Pareek, CA Finalist</h3>
+                    <p>Seeing the past excellent record of NYMPH ACADEMY, I am 100% confident of my child securing a meritorious position in XII board.</p>
+                </div>
+                <div class="slide">
+                    <span class="quote-icon">“</span>
+                    <div class="avatar">HA</div>
+                    <h3>Hardik Agarwal, XII Class</h3>
+                    <p>The kind of academic resources and study material provided to students in NYMPH ACADEMY are of exceptionally high standards. My child excelled in X board because of continuous monitoring.</p>
+                </div>
+                <div class="slide">
+                    <span class="quote-icon">“</span>
+                    <div class="avatar">NK</div>
+                    <h3>Nikhil Kumawat, CA</h3>
+                    <p>My daughter achieved merit 8th rank in X board. I would like to thank the entire staff of NYMPH ACADEMY for their able guidance and support.</p>
+                </div>
+                <div class="slide">
+                    <span class="quote-icon">“</span>
+                    <div class="avatar">PD</div>
+                    <h3>Prateek Deegwal, XI Class</h3>
+                    <p>A wonderful environment for children's development. Compulsory English speaking, etiquettes and discipline of NYMPH ACADEMY made my child stand out.</p>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button onclick="prevSlide()">❮ Previous</button>
+            <button onclick="nextSlide()">Next ❯</button>
+        </div>
+        <div class="dots" id="dots"></div>
+    </section>
+
+
+
+    <script>
+        // Enhanced Testimonial Slider
+        let currentSlide = 0;
+        const slidesContainer = document.getElementById('slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+        const dotsContainer = document.getElementById('dots');
+
+        // Create dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateSlides() {
+            document.querySelectorAll('.slide').forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlides();
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateSlides();
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        updateSlides(); // Initial setup
+
+        // Form Submission with Razorpay
+        const form = document.getElementById('enrollForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Basic validation
+            const formData = {
+                name: document.getElementById('name').value,
+                number: document.getElementById('number').value,
+                email: document.getElementById('email').value,
+                course: document.getElementById('course').value,
+                message: document.getElementById('message').value
+            };
+
+            if (!formData.name || !formData.number || !formData.email || !formData.course || !formData.message) {
+                alert('Please fill all fields.');
+                return;
+            }
+
+            // Razorpay Options
+            const options = {
+                key: 'YOUR_RAZORPAY_KEY', // Replace with your actual Razorpay key
+                amount: 50000, // Rs. 500 in paise
+                currency: 'INR',
+                name: 'Nymph Academy Enrollment',
+                description: 'Application Fee',
+                image: 'https://www.nymphacademy.in/logo.png', // Logo
+                handler: function(response) {
+                    // On success, submit form to backend (which will email details)
+                    fetch('/submit-enrollment', { // Replace with your backend endpoint
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ ...formData, razorpay_payment_id: response.razorpay_payment_id })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('paymentStatus').innerHTML = 'Enrollment submitted successfully! Payment ID: ' + response.razorpay_payment_id + '<br>Details have been emailed to the academy.';
+                        document.getElementById('paymentStatus').classList.remove('hidden');
+                        form.reset();
+                    })
+                    .catch(err => {
+                        alert('Submission failed. Please contact support.');
+                        console.error(err);
+                    });
+                },
+                prefill: {
+                    name: formData.name,
+                    email: formData.email,
+                    contact: formData.number
+                },
+                theme: {
+                    color: '#1976d2'
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
