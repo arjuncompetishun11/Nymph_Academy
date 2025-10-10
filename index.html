@@ -7,19 +7,15 @@
     <title>Nymph Academy - Student Enrollment</title>
     <!-- GitHub Pages SPA Redirect Script -->
     <script type="text/javascript">
-      // Check for redirect info in sessionStorage (from 404.html)
-      (function() {
-        const redirectPath = sessionStorage.getItem('redirectPath');
-        if (redirectPath) {
-          // Remove the stored path
-          sessionStorage.removeItem('redirectPath');
-          
-          // Use history API to navigate to the correct route without a page refresh
-          const baseUrl = window.location.pathname;
-          history.replaceState(null, null, baseUrl + redirectPath);
-        }
-      })();
-    </script>
+  (function() {
+    const redirectPath = localStorage.getItem('redirectAfterReload');
+    if (redirectPath) {
+      localStorage.removeItem('redirectAfterReload');
+      // Replace current history state without causing another reload
+      window.history.replaceState(null, '', redirectPath);
+    }
+  })();
+</script>
     <!-- End GitHub Pages SPA Redirect Script -->
     <script type="module" crossorigin src="/Nymph_Academy/assets/index-D4wHp9r2.js"></script>
     <link rel="stylesheet" crossorigin href="/Nymph_Academy/assets/index-vXuoLPf4.css">
