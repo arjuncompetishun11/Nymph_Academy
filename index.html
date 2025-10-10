@@ -5,24 +5,23 @@
     <link rel="icon" type="image/svg+xml" href="/Nymph_Academy/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nymph Academy - Student Enrollment</title>
-    <!-- Start Single Page Apps for GitHub Pages -->
+    <!-- GitHub Pages SPA Redirect Script -->
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
+      // Check for redirect info in sessionStorage (from 404.html)
+      (function() {
+        const redirectPath = sessionStorage.getItem('redirectPath');
+        if (redirectPath) {
+          // Remove the stored path
+          sessionStorage.removeItem('redirectPath');
+          
+          // Use history API to navigate to the correct route without a page refresh
+          const baseUrl = window.location.pathname;
+          history.replaceState(null, null, baseUrl + redirectPath);
         }
-      }(window.location))
+      })();
     </script>
-    <!-- End Single Page Apps for GitHub Pages -->
-    <script type="module" crossorigin src="/Nymph_Academy/assets/index-7GnfT-eX.js"></script>
+    <!-- End GitHub Pages SPA Redirect Script -->
+    <script type="module" crossorigin src="/Nymph_Academy/assets/index-D4wHp9r2.js"></script>
     <link rel="stylesheet" crossorigin href="/Nymph_Academy/assets/index-vXuoLPf4.css">
   </head>
   <body>
