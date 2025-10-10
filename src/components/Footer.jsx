@@ -93,7 +93,6 @@ const Footer = () => {
                   About Us
                 </Link>
               </li>
-              
             </ul>
           </div>
 
@@ -142,7 +141,8 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-6 pt-6 text-center text-sm text-gray-400">
-          © {currentYear} Nymph Academy. All rights reserved.
+          © {currentYear} Nymph Academy. All rights reserved. <br />Managed by
+          Impression - A Unit of VDS SERVICES
         </div>
       </div>
     </footer>
