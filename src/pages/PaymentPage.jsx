@@ -16,15 +16,22 @@ const PaymentPage = () => {
   const [loading, setLoading] = useState(true);
   const [paymentPreview, setPaymentPreview] = useState(null);
 
-  // Fetch student data
+  // State for website settings
+  const [websiteSettings, setWebsiteSettings] = useState({
+    paymentPrice: "150",
+    paymentQRUrl: "https://res.cloudinary.com/dzwjnirr2/image/upload/v1760094772/payment-qr_ucm3p1.svg"
+  });
+
+  // Fetch student data and website settings
   useEffect(() => {
-    const fetchStudentData = async () => {
+    const fetchData = async () => {
       if (!studentId) {
         navigate('/enrollment');
         return;
       }
 
       try {
+        // Fetch student data
         const studentRef = doc(db, 'students', studentId);
         const studentDoc = await getDoc(studentRef);
         
@@ -37,18 +44,30 @@ const PaymentPage = () => {
           id: studentDoc.id,
           ...studentDoc.data()
         });
+
+        // Fetch website settings
+        const settingsRef = doc(db, "settings", "website");
+        const settingsDoc = await getDoc(settingsRef);
+        
+        if (settingsDoc.exists()) {
+          const settings = settingsDoc.data();
+          setWebsiteSettings({
+            paymentPrice: settings.paymentPrice || "150",
+            paymentQRUrl: settings.paymentQRUrl || "https://res.cloudinary.com/dzwjnirr2/image/upload/v1760094772/payment-qr_ucm3p1.svg"
+          });
+        }
       } catch (error) {
-        console.error('Error fetching student data:', error);
+        console.error('Error fetching data:', error);
         setErrors({
           ...errors,
-          fetch: 'Failed to load student data. Please try again.'
+          fetch: 'Failed to load data. Please try again.'
         });
       } finally {
         setLoading(false);
       }
     };
 
-    fetchStudentData();
+    fetchData();
   }, [studentId, navigate]);
 
   // Handle file input change
@@ -316,12 +335,12 @@ const PaymentPage = () => {
             <h2 className="text-lg font-semibold text-gray-700 mb-3">
               Payment Details
             </h2>
-            <p className="text-gray-600 mb-4">Fee: ₹150</p>
+            <p className="text-gray-600 mb-4">Fee: ₹{websiteSettings.paymentPrice}</p>
 
             <div className="flex justify-center mb-4">
               <div className="border border-gray-300 rounded-md p-4 bg-gray-50">
                 <img
-                  src="https://res.cloudinary.com/dzwjnirr2/image/upload/v1760094772/payment-qr_ucm3p1.svg"
+                  src={websiteSettings.paymentQRUrl}
                   alt="Payment QR Code"
                   className="h-64 w-64 object-contain"
                 />
@@ -329,7 +348,7 @@ const PaymentPage = () => {
             </div>
 
             <p className="text-sm text-gray-500 mb-4 text-center">
-              Scan the QR code above to make your payment of ₹150
+              Scan the QR code above to make your payment of ₹{websiteSettings.paymentPrice}
             </p>
           </div>
 

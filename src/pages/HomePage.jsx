@@ -69,7 +69,7 @@ const HomePage = () => {
             to="/enrollment" 
             className="bg-blue-600 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition duration-300"
           >
-            Enroll Now for ₹150
+            Enroll Now
           </Link>
         </div>
       </div>
