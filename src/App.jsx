@@ -5,8 +5,11 @@ import PaymentPage from './pages/PaymentPage'
 import ConfirmationPage from './pages/ConfirmationPage'
 
 function App() {
+  // Set basename for GitHub Pages
+  const basename = '/Nymph_Academy';
+  
   return (
-    <Router>
+    <Router basename={basename}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/enrollment" element={<EnrollmentForm />} />
