@@ -202,7 +202,12 @@ const PaymentPage = () => {
       const paddedNumber = String(newRollNumber).padStart(3, '0');
       
       // Create the roll number
-      const rollNumber = `1${classGrade}${paddedNumber}`;
+      let rollNumber = '';
+      if(classGrade<10){
+        rollNumber = `1${classGrade}${paddedNumber}`;
+      }else{
+        rollNumber = `2${(classGrade-10)}${paddedNumber}`;
+      }
       
       // Double-check that this roll number doesn't already exist
       // This is a safety check in case the counter gets out of sync
