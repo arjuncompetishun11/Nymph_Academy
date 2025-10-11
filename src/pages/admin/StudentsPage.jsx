@@ -42,33 +42,31 @@ const StudentsPage = () => {
       try {
         setLoading(true);
         let studentQuery;
-        
+
+        console.log('paymentstatusfilter:', paymentStatusFilter);
         // Apply filters based on which ones are active
         if (classFilter && paymentStatusFilter) {
           // Both class and payment status filters
           studentQuery = query(
             collection(db, "students"), 
             where("classGrade", "==", classFilter),
-            where("paymentStatus", "==", paymentStatusFilter),
-            orderBy("rollNumber", "asc")
+            where("paymentStatus", "==", paymentStatusFilter)
           );
         } else if (classFilter) {
           // Only class filter
           studentQuery = query(
             collection(db, "students"), 
-            where("classGrade", "==", classFilter),
-            orderBy("rollNumber", "asc")
+            where("classGrade", "==", classFilter)
           );
         } else if (paymentStatusFilter) {
           // Only payment status filter
           studentQuery = query(
             collection(db, "students"), 
-            where("paymentStatus", "==", paymentStatusFilter),
-            orderBy("rollNumber", "asc")
+            where("paymentStatus", "==", paymentStatusFilter)
           );
         } else {
           // No filters
-          studentQuery = query(collection(db, "students"), orderBy("rollNumber", "asc"));
+          studentQuery = query(collection(db, "students"));
         }
         
         const studentDocs = await getDocs(studentQuery);
@@ -77,10 +75,28 @@ const StudentsPage = () => {
           ...doc.data()
         }));
 
-        console.log('students Docs', studentDocs);
-        console.log('students List', studentsList);
+        // Sort students by roll number if available, keeping those without roll numbers at the top
+        const sortedStudentsList = studentsList.sort((a, b) => {
+          // If both have roll numbers, sort numerically
+          if (a.rollNumber && b.rollNumber) {
+            return Number(a.rollNumber) - Number(b.rollNumber);
+          }
+          // If only a has roll number, b comes first
+          if (a.rollNumber && !b.rollNumber) {
+            return 1;
+          }
+          // If only b has roll number, a comes first
+          if (!a.rollNumber && b.rollNumber) {
+            return -1;
+          }
+          // If neither has roll number, sort by name
+          return a.fullName.localeCompare(b.fullName);
+        });
 
-        setStudents(studentsList);
+        // console.log('students Docs', studentDocs);
+        // console.log('students List', sortedStudentsList);
+
+        setStudents(sortedStudentsList);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching students:", error);
