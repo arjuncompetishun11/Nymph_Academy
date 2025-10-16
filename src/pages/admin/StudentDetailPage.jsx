@@ -163,10 +163,7 @@ const StudentDetailPage = () => {
                 <p className="text-gray-500 text-sm">Mobile</p>
                 <p className="font-semibold">{student.motherMobile || 'N/A'}</p>
               </div>
-              <div>
-                <p className="text-gray-500 text-sm">Phone</p>
-                <p className="font-semibold">{student.motherPhone || 'N/A'}</p>
-              </div>
+
               <div>
                 <p className="text-gray-500 text-sm">Email</p>
                 <p className="font-semibold">{student.motherEmail || 'N/A'}</p>
@@ -189,10 +186,7 @@ const StudentDetailPage = () => {
                 <p className="text-gray-500 text-sm">Mobile</p>
                 <p className="font-semibold">{student.fatherMobile || 'N/A'}</p>
               </div>
-              <div>
-                <p className="text-gray-500 text-sm">Phone</p>
-                <p className="font-semibold">{student.fatherPhone || 'N/A'}</p>
-              </div>
+
               <div>
                 <p className="text-gray-500 text-sm">Email</p>
                 <p className="font-semibold">{student.fatherEmail || 'N/A'}</p>

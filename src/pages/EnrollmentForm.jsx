@@ -34,14 +34,12 @@ const EnrollmentForm = () => {
     // Mother Information
     motherName: "",
     motherOccupation: "",
-    motherPhone: "",
     motherMobile: "",
     motherEmail: "",
 
     // Father Information
     fatherName: "",
     fatherOccupation: "",
-    fatherPhone: "",
     fatherMobile: "",
     fatherEmail: "",
 
@@ -278,14 +276,12 @@ const EnrollmentForm = () => {
         // Mother Information
         motherName: formData.motherName,
         motherOccupation: formData.motherOccupation,
-        motherPhone: formData.motherPhone,
         motherMobile: formData.motherMobile,
         motherEmail: formData.motherEmail,
 
         // Father Information
         fatherName: formData.fatherName,
         fatherOccupation: formData.fatherOccupation,
-        fatherPhone: formData.fatherPhone,
         fatherMobile: formData.fatherMobile,
         fatherEmail: formData.fatherEmail,
 
@@ -638,25 +634,6 @@ const EnrollmentForm = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Mother's Phone */}
-                <div className="mb-4">
-                  <label
-                    htmlFor="motherPhone"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Mother's Phone
-                  </label>
-                  <input
-                    type="text"
-                    id="motherPhone"
-                    name="motherPhone"
-                    value={formData.motherPhone}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-2 border rounded-md border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50`}
-                    placeholder="Enter mother's phone number"
-                  />
-                </div>
-
                 {/* Mother's Mobile */}
                 <div className="mb-4">
                   <label
@@ -767,25 +744,6 @@ const EnrollmentForm = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Father's Phone */}
-                <div className="mb-4">
-                  <label
-                    htmlFor="fatherPhone"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Father's Phone
-                  </label>
-                  <input
-                    type="text"
-                    id="fatherPhone"
-                    name="fatherPhone"
-                    value={formData.fatherPhone}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-2 border rounded-md border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50`}
-                    placeholder="Enter father's phone number"
-                  />
-                </div>
-
                 {/* Father's Mobile */}
                 <div className="mb-4">
                   <label

@@ -214,12 +214,7 @@ const handlePrint = () => {
                       <span className="text-gray-900">{studentData?.motherOccupation}</span>
                     </div>
                   )}
-                  {studentData?.motherPhone && (
-                    <div className="flex">
-                      <span className="font-medium text-gray-700 w-1/3">Phone:</span>
-                      <span className="text-gray-900">{studentData?.motherPhone}</span>
-                    </div>
-                  )}
+
                   <div className="flex">
                     <span className="font-medium text-gray-700 w-1/3">Mobile:</span>
                     <span className="text-gray-900">{studentData?.motherMobile}</span>
@@ -252,12 +247,7 @@ const handlePrint = () => {
                       <span className="text-gray-900">{studentData?.fatherOccupation}</span>
                     </div>
                   )}
-                  {studentData?.fatherPhone && (
-                    <div className="flex">
-                      <span className="font-medium text-gray-700 w-1/3">Phone:</span>
-                      <span className="text-gray-900">{studentData?.fatherPhone}</span>
-                    </div>
-                  )}
+
                   <div className="flex">
                     <span className="font-medium text-gray-700 w-1/3">Mobile:</span>
                     <span className="text-gray-900">{studentData?.fatherMobile}</span>
