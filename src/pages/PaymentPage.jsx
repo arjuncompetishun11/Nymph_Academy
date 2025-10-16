@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { doc, getDoc, updateDoc, collection, query, where, getDocs, setDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, collection, query, where, getDocs, setDoc, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 import { uploadPaymentScreenshot } from '../cloudinary';
 import NavBar from '../components/NavBar';
@@ -159,7 +159,12 @@ const PaymentPage = () => {
   const checkRollNumberExists = async (rollNumber) => {
     try {
       const studentsRef = collection(db, 'students');
-      const q = query(studentsRef, where("rollNumber", "==", rollNumber));
+      const q = query(
+        studentsRef,
+        where("rollNumber", "==", rollNumber),
+        limit(1)
+      );
+      
       const querySnapshot = await getDocs(q);
       
       return !querySnapshot.empty;

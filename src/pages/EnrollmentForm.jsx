@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { uploadStudentImage } from "../cloudinary";
 import NavBar from "../components/NavBar";
@@ -57,23 +64,23 @@ const EnrollmentForm = () => {
   // Fetch the website settings
   useEffect(() => {
     const fetchSettings = async () => {
-    try {
-      // Fetch website settings
-      const settingsRef = doc(db, "settings", "website");
-      const settingsDoc = await getDoc(settingsRef);
+      try {
+        // Fetch website settings
+        const settingsRef = doc(db, "settings", "website");
+        const settingsDoc = await getDoc(settingsRef);
 
-      if (settingsDoc.exists()) {
-        const settings = settingsDoc.data();
-        setWebsiteSettings({
-          paymentPrice: settings.paymentPrice || "150",
-          paymentQRUrl:
-            settings.paymentQRUrl ||
-            "https://res.cloudinary.com/dzwjnirr2/image/upload/v1760094772/payment-qr_ucm3p1.svg",
-        });
+        if (settingsDoc.exists()) {
+          const settings = settingsDoc.data();
+          setWebsiteSettings({
+            paymentPrice: settings.paymentPrice || "150",
+            paymentQRUrl:
+              settings.paymentQRUrl ||
+              "https://res.cloudinary.com/dzwjnirr2/image/upload/v1760094772/payment-qr_ucm3p1.svg",
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching website settings:", error);
       }
-    } catch (error) {
-      console.error("Error fetching website settings:", error);
-    }
     };
     fetchSettings();
   }, []);
@@ -252,8 +259,13 @@ const EnrollmentForm = () => {
       // Step 1: Upload photo to Cloudinary
       const uploadResult = await uploadStudentImage(formData.photoFile);
 
-      // Step 2: Save student data to Firestore
+      // Step 2: Create a new doc reference (so we know its ID beforehand)
+      const docRef = doc(collection(db, "students"));
+      const studentId = docRef.id;
+
+      // Step 3: Prepare student data with ID included
       const studentData = {
+        id: studentId, 
         // Student Information
         fullName: formData.fullName,
         email: formData.email,
@@ -288,16 +300,18 @@ const EnrollmentForm = () => {
         numberOfSisters: formData.numberOfSisters,
 
         photoURL: uploadResult.url,
-        photoPublicId: uploadResult.publicId, // Store Cloudinary public ID for potential deletion later
+        photoPublicId: uploadResult.publicId, // Cloudinary ID
         enrollmentDate: new Date(),
         paymentStatus: "pending",
         // Roll number will be generated after payment
       };
 
-      const docRef = await addDoc(collection(db, "students"), studentData);
+      // Step 4: Create document directly with `setDoc`
+      await setDoc(docRef, studentData);
+      console.log("Document created with ID:", studentId);
 
-      // Navigate to payment page with student ID
-      navigate(`/payment/${docRef.id}`);
+      // Step 5: Navigate to payment page
+      navigate(`/payment/${studentId}`);
     } catch (error) {
       console.error("Error submitting form:", error);
       setErrors({
@@ -320,7 +334,8 @@ const EnrollmentForm = () => {
             Welcome to Nymph Academy
           </h1>
           <p className="text-lg">
-            Enroll today for ₹{websiteSettings.paymentPrice} fee. Secure and easy process.
+            Enroll today for ₹{websiteSettings.paymentPrice} fee. Secure and
+            easy process.
           </p>
         </div>
       </div>
