@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc, updateDoc, collection, query, where, getDocs, setDoc, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 import { uploadPaymentScreenshot } from '../cloudinary';
+import { sendTemplateEmail } from '../utils/emailService';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 
@@ -164,7 +165,7 @@ const PaymentPage = () => {
         where("rollNumber", "==", rollNumber),
         limit(1)
       );
-      
+
       const querySnapshot = await getDocs(q);
       
       return !querySnapshot.empty;
@@ -237,11 +238,47 @@ const PaymentPage = () => {
     }
   };
 
-  // Send email function (placeholder)
-  const sendEmail = (studentData) => {
-    // This is a placeholder function
-    console.log('Sending email to student:', studentData.email);
-    // Implement email sending functionality later
+  // Send confirmation email with roll number details
+  const sendEmail = async (studentData) => {
+    try {
+      if (!studentData.email) {
+        console.warn('No email address provided for student');
+        return;
+      }
+      
+      // Format dates for email template
+      const enrollmentDate = studentData.enrollmentDate ? 
+        studentData.enrollmentDate.toDate().toLocaleDateString() : 
+        new Date().toLocaleDateString();
+      
+      const paymentDate = studentData.paymentDate ? 
+        studentData.paymentDate.toDate().toLocaleDateString() : 
+        new Date().toLocaleDateString();
+      
+      // Prepare data for email template
+      const emailData = {
+        studentName: studentData.fullName,
+        rollNumber: studentData.rollNumber,
+        classGrade: studentData.classGrade,
+        schoolName: studentData.schoolName,
+        enrollmentDate: enrollmentDate,
+        paymentDate: paymentDate,
+        currentYear: new Date().getFullYear()
+      };
+      
+      // Send email using the email service
+      const result = await sendTemplateEmail(
+        studentData.email,
+        emailData,
+        "nymph-academy-roll-number"
+      );
+      
+      console.log('Email sent successfully:', result);
+      return result;
+    } catch (error) {
+      console.error('Error sending enrollment confirmation email:', error);
+      // Don't throw error here - we don't want to block the enrollment process if email fails
+    }
   };
 
   // Handle form submission
@@ -282,8 +319,13 @@ const PaymentPage = () => {
         ...updatedStudentDoc.data()
       };
       
-      // Step 4: Send email confirmation (placeholder)
-      sendEmail(updatedStudentData);
+      // Step 4: Send email confirmation
+      try {
+        await sendEmail(updatedStudentData);
+      } catch (emailError) {
+        console.error('Email sending failed, but payment was processed:', emailError);
+        // We continue with the process even if email fails
+      }
       
       // Navigate to confirmation page
       navigate(`/confirmation/${studentId}`);
