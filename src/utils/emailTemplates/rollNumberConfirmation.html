@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nymph Academy DOT Exam Roll Number Confirmation</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      background-color: #4f46e5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+    }
+    .content {
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #e1e1e1;
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+    }
+    .student-info {
+      margin-bottom: 20px;
+      background-color: white;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #e1e1e1;
+    }
+    .info-row {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .info-label {
+      width: 40%;
+      font-weight: bold;
+    }
+    .info-value {
+      width: 60%;
+    }
+    .roll-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #4f46e5;
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #eef2ff;
+      border-radius: 5px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #e1e1e1;
+      font-size: 12px;
+      color: #666;
+    }
+    .note {
+      font-style: italic;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>Nymph Academy DOT Exam Enrollment Confirmation</h1>
+    </div>
+    <div class="content">
+      <p>Dear {{studentName}},</p>
+      <p>Thank you for completing your enrollment at Nymph Academy DOT Exam. Your enrollment has been confirmed, and your unique roll number has been generated:</p>
+      
+      <div class="roll-number">
+        {{rollNumber}}
+      </div>
+      
+      <p>Please save this roll number for future reference.</p>
+      
+      <div class="student-info">
+        <h3>Student Information</h3>
+        <div class="info-row">
+          <div class="info-label">Name:</div>
+          <div class="info-value">{{studentName}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Class:</div>
+          <div class="info-value">{{classGrade}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">School:</div>
+          <div class="info-value">{{schoolName}}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Enrollment Date:</div>
+          <div class="info-value">{{enrollmentDate}}</div>
+        </div>
+      </div>
+      
+      <div style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px; color: #856404;">
+        <p style="font-size: 14px; margin: 0;">
+          <strong>Important Notice:</strong> Please note that all payment receipts undergo verification. If the payment screenshot submitted is found to be invalid, incomplete, or fraudulent, Nymph Academy reserves the right to nullify this enrollment and cancel the assigned roll number without prior notice. Such students will not be permitted to appear for the test under any circumstances.
+        </p>
+      </div>
+      
+      <p class="note">Note: Please retain this information for your records. </p>
+    </div>
+    <div class="footer">
+      <p>&copy; {{currentYear}} Nymph Academy. All rights reserved.</p>
+      <p>This is an automated message, please do not reply directly to this email.</p>
+    </div>
+  </div>
+</body>
+</html>

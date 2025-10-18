@@ -99,6 +99,37 @@ const EnrollmentForm = () => {
       });
     }
   };
+  
+  // Handle special keys for date of birth input
+  const handleDateKeyDown = (e) => {
+    if (e.key === 'Backspace') {
+      // If cursor is right after a hyphen, delete both hyphen and preceding digit
+      const input = e.target;
+      const cursorPosition = input.selectionStart;
+      
+      if (
+        cursorPosition > 0 && 
+        formData.dateOfBirth.charAt(cursorPosition - 1) === '-'
+      ) {
+        e.preventDefault();
+        
+        const newValue = 
+          formData.dateOfBirth.substring(0, cursorPosition - 2) + 
+          formData.dateOfBirth.substring(cursorPosition);
+        
+        setFormData({
+          ...formData,
+          dateOfBirth: newValue,
+        });
+        
+        // Set cursor position
+        setTimeout(() => {
+          input.selectionStart = cursorPosition - 2;
+          input.selectionEnd = cursorPosition - 2;
+        }, 0);
+      }
+    }
+  };
 
   // Handle file input change
   const handleFileChange = (e) => {
@@ -174,6 +205,18 @@ const EnrollmentForm = () => {
 
     if (!formData.dateOfBirth) {
       newErrors.dateOfBirth = "Date of birth is required";
+    } else if (!/^\d{2}-\d{2}-\d{4}$/.test(formData.dateOfBirth)) {
+      newErrors.dateOfBirth = "Date must be in DD-MM-YYYY format";
+    } else {
+      // Validate the date itself
+      const [day, month, year] = formData.dateOfBirth.split('-').map(Number);
+      const isValidDay = day > 0 && day <= 31;
+      const isValidMonth = month > 0 && month <= 12;
+      const isValidYear = year >= 1900 && year <= new Date().getFullYear();
+      
+      if (!isValidDay || !isValidMonth || !isValidYear) {
+        newErrors.dateOfBirth = "Please enter a valid date";
+      }
     }
 
     if (!formData.gender) {
@@ -262,6 +305,13 @@ const EnrollmentForm = () => {
       const studentId = docRef.id;
 
       // Step 3: Prepare student data with ID included
+      // Convert DD-MM-YYYY to YYYY-MM-DD format for standardization
+      let formattedDateOfBirth = formData.dateOfBirth;
+      if (formData.dateOfBirth && /^\d{2}-\d{2}-\d{4}$/.test(formData.dateOfBirth)) {
+        const [day, month, year] = formData.dateOfBirth.split('-');
+        formattedDateOfBirth = `${year}-${month}-${day}`;
+      }
+
       const studentData = {
         id: studentId, 
         // Student Information
@@ -270,7 +320,7 @@ const EnrollmentForm = () => {
         classGrade: formData.classGrade,
         medium: formData.medium,
         schoolName: formData.schoolName,
-        dateOfBirth: formData.dateOfBirth,
+        dateOfBirth: formattedDateOfBirth,
         gender: formData.gender,
 
         // Mother Information
@@ -339,7 +389,7 @@ const EnrollmentForm = () => {
       <div className="flex-grow container mx-auto py-8 px-4">
         <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            Nymph Academy Scholarship Exam Enrollment
+            Nymph Academy DOT Scholarship Exam Enrollment
           </h2>
 
           {errors.submit && (
@@ -417,11 +467,140 @@ const EnrollmentForm = () => {
                   Date of Birth *
                 </label>
                 <input
-                  type="date"
+                  type="text"
                   id="dateOfBirth"
                   name="dateOfBirth"
+                  placeholder="DD-MM-YYYY"
                   value={formData.dateOfBirth}
-                  onChange={handleChange}
+                  onKeyDown={handleDateKeyDown}
+                  onChange={(e) => {
+                    let { value } = e.target;
+                    const prevValue = formData.dateOfBirth;
+                    const isBackspace = value.length < prevValue.length;
+                    
+                    if (isBackspace) {
+                      // Handle backspace - we need special logic to handle hyphen deletion
+                      if (prevValue.endsWith('-')) {
+                        // If we're deleting a hyphen, remove the digit before it too
+                        const newValue = prevValue.slice(0, -2);
+                        setFormData({
+                          ...formData,
+                          dateOfBirth: newValue,
+                        });
+                      } else {
+                        // Regular backspace on a digit
+                        setFormData({
+                          ...formData,
+                          dateOfBirth: value,
+                        });
+                      }
+                      return;
+                    }
+                    
+                    // For new input, validate and format
+                    
+                    // Remove any non-digit characters for processing
+                    const digitsOnly = value.replace(/\D/g, '');
+                    
+                    // Apply formatting and validation based on input length
+                    let formattedValue = '';
+                    
+                    if (digitsOnly.length === 0) {
+                      formattedValue = '';
+                    } 
+                    else if (digitsOnly.length === 1) {
+                      const digit = parseInt(digitsOnly);
+                      
+                      // For digits 0-3 (could be first digit of 01-31), just show the digit
+                      if (digit >= 0 && digit <= 3) {
+                        formattedValue = digitsOnly;
+                      }
+                      // For digits 4-9, automatically add leading zero and hyphen
+                      // (since days can't be 40-99, these must be single-digit days)
+                      else if (digit >= 4 && digit <= 9) {
+                        formattedValue = '0' + digitsOnly + '-';
+                      }
+                      // For invalid values (shouldn't happen), don't update
+                      else {
+                        formattedValue = prevValue;
+                      }
+                    } 
+                    else if (digitsOnly.length === 2) {
+                      // Two day digits - must be between 01-31
+                      const day = parseInt(digitsOnly);
+                      if (day >= 1 && day <= 31) {
+                        formattedValue = digitsOnly + '-';
+                      } else {
+                        // If invalid day, truncate to previous valid value
+                        formattedValue = prevValue;
+                      }
+                    } 
+                    else if (digitsOnly.length === 3) {
+                      // First digit of month
+                      const monthFirstDigit = parseInt(digitsOnly.charAt(2));
+                      
+                      // For 0-1 (could be first digit of 01-12), just show the digit
+                      if (monthFirstDigit === 0 || monthFirstDigit === 1) {
+                        formattedValue = digitsOnly.slice(0, 2) + '-' + digitsOnly.slice(2);
+                      }
+                      // For 2-9, automatically add a leading zero and hyphen
+                      // (since months can't be 20-99, these must be single-digit months)
+                      else if (monthFirstDigit >= 2 && monthFirstDigit <= 9) {
+                        // Transform the input to format DD-0M
+                        formattedValue = digitsOnly.slice(0, 2) + '-0' + digitsOnly.slice(2) + '-';
+                      } else {
+                        // For invalid values (shouldn't happen), don't update
+                        formattedValue = prevValue;
+                      }
+                    } 
+                    else if (digitsOnly.length === 4) {
+                      // Full month - must be between 01-12
+                      const month = parseInt(digitsOnly.slice(2, 4));
+                      if (month >= 1 && month <= 12) {
+                        formattedValue = digitsOnly.slice(0, 2) + '-' + digitsOnly.slice(2, 4) + '-';
+                      } else {
+                        // If invalid month, truncate
+                        formattedValue = digitsOnly.slice(0, 2) + '-' + digitsOnly.slice(2, 3);
+                      }
+                    } 
+                    else if (digitsOnly.length >= 5) {
+                      // Year part - handle both regular case and case where we added leading zeros
+                      // Instead of slicing the digits, use the existing formatted date as a base
+                      // and just add the year part
+                      const parts = formData.dateOfBirth.split('-');
+                      if (parts.length >= 2) {
+                        // Get day and month from the current formatted value
+                        const day = parts[0];
+                        const month = parts[1];
+                        
+                        // Calculate where in the digits array the year starts
+                        // This accounts for any added leading zeros
+                        const totalPreviousDigits = day.length + month.length;
+                        const yearDigits = digitsOnly.substring(totalPreviousDigits);
+                        
+                        // Format the full date
+                        formattedValue = day + '-' + month + '-' + yearDigits;
+                      } else {
+                        // Fallback to simple formatting if something went wrong with the parts
+                        formattedValue = digitsOnly.slice(0, 2) + '-' + digitsOnly.slice(2, 4) + '-' + digitsOnly.slice(4, 8);
+                      }
+                    }
+
+                    // Update the form state
+                    setFormData({
+                      ...formData,
+                      dateOfBirth: formattedValue,
+                    });
+
+                    // Clear error for this field when user types
+                    if (errors.dateOfBirth) {
+                      setErrors({
+                        ...errors,
+                        dateOfBirth: "",
+                      });
+                    }
+                  }}
+                  maxLength={10}
                   className={`w-full px-4 py-2 border rounded-md ${
                     errors.dateOfBirth ? "border-red-500" : "border-gray-300"
                   } focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50`}

@@ -129,7 +129,7 @@ const handlePrint = () => {
         >
           <div className="border-b border-green-500 pb-4 mb-6 relative">
             <h1 className="text-3xl font-bold text-center text-gray-800 mt-4">
-              Nymph Academy Enrollment Confirmation
+              Nymph Academy DOT Enrollment Confirmation
             </h1>
             <div className="mt-3 bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-lg text-center print:hidden">
               <p className="text-lg">Congratulations! Your enrollment is complete.</p>
