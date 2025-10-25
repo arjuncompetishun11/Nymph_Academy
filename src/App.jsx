@@ -12,12 +12,9 @@ import ProtectedRoute from './components/auth/ProtectedRoute'
 import { AuthProvider } from './contexts/AuthContext'
 
 function App() {
-  // Set basename for GitHub Pages
-  const basename = '/Nymph_Academy';
-  
   return (
     <AuthProvider>
-      <Router basename={basename}>
+      <Router>
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<HomePage />} />

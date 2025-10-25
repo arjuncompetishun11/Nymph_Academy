@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://arjuncompetishun11.github.io/Nymph_Academy/",
+  "homepage": "https://dotexam.nymphacademy.in/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
