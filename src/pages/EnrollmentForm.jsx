@@ -55,7 +55,6 @@ const EnrollmentForm = () => {
 
     // How did you hear about us
     hearAboutUs: "",
-    hearAboutUsOther: "",
 
     photoFile: null,
   });
@@ -287,12 +286,8 @@ const EnrollmentForm = () => {
     }
 
     // How did you hear about us
-    if (!formData.hearAboutUs) {
-      newErrors.hearAboutUs = "Please select how you heard about us";
-    }
-
-    if (formData.hearAboutUs === "Other" && !formData.hearAboutUsOther.trim()) {
-      newErrors.hearAboutUsOther = "Please specify how you heard about us";
+    if (!formData.hearAboutUs.trim()) {
+      newErrors.hearAboutUs = "Please specify how you heard about us";
     }
 
     setErrors(newErrors);
@@ -360,7 +355,6 @@ const EnrollmentForm = () => {
 
         // How did you hear about us
         hearAboutUs: formData.hearAboutUs,
-        hearAboutUsOther: formData.hearAboutUs === "Other" ? formData.hearAboutUsOther : "",
 
         photoURL: uploadResult.url,
         photoPublicId: uploadResult.publicId, // Cloudinary ID
@@ -1139,86 +1133,25 @@ const EnrollmentForm = () => {
 
             <div className="bg-white p-4 rounded-lg border border-gray-200">
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Select one option *
+                <label
+                  htmlFor="hearAboutUs"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Please specify *
                 </label>
-                <div className="space-y-3">
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="radio"
-                      name="hearAboutUs"
-                      value="Teacher"
-                      checked={formData.hearAboutUs === "Teacher"}
-                      onChange={handleChange}
-                      className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="ml-3 text-gray-700">Teacher</span>
-                  </label>
-                  
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="radio"
-                      name="hearAboutUs"
-                      value="Friends"
-                      checked={formData.hearAboutUs === "Friends"}
-                      onChange={handleChange}
-                      className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="ml-3 text-gray-700">Friends</span>
-                  </label>
-                  
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="radio"
-                      name="hearAboutUs"
-                      value="Instagram Ad"
-                      checked={formData.hearAboutUs === "Instagram Ad"}
-                      onChange={handleChange}
-                      className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="ml-3 text-gray-700">Instagram Ad</span>
-                  </label>
-                  
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="radio"
-                      name="hearAboutUs"
-                      value="Other"
-                      checked={formData.hearAboutUs === "Other"}
-                      onChange={handleChange}
-                      className="w-4 h-4 text-blue-600 focus:ring-blue-500"
-                    />
-                    <span className="ml-3 text-gray-700">Other (Please specify)</span>
-                  </label>
-                </div>
+                <input
+                  type="text"
+                  id="hearAboutUs"
+                  name="hearAboutUs"
+                  value={formData.hearAboutUs}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                  placeholder="Teacher, Friends, Instagram Ad, Other (If any)"
+                />
                 {errors.hearAboutUs && (
                   <p className="mt-2 text-sm text-red-500">{errors.hearAboutUs}</p>
                 )}
               </div>
-
-              {/* Show text input if "Other" is selected */}
-              {formData.hearAboutUs === "Other" && (
-                <div className="mb-4">
-                  <label
-                    htmlFor="hearAboutUsOther"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Please specify *
-                  </label>
-                  <input
-                    type="text"
-                    id="hearAboutUsOther"
-                    name="hearAboutUsOther"
-                    value={formData.hearAboutUsOther}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    placeholder="Please specify how you heard about us"
-                  />
-                  {errors.hearAboutUsOther && (
-                    <p className="mt-1 text-sm text-red-500">{errors.hearAboutUsOther}</p>
-                  )}
-                </div>
-              )}
             </div>
 
             <h3 className="text-lg font-bold text-blue-700 mt-6 mb-4 border-b pb-2 flex items-center">

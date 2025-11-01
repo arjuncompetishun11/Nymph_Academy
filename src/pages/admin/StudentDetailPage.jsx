@@ -237,12 +237,6 @@ const StudentDetailPage = () => {
                 <p className="text-gray-500 text-sm">Source</p>
                 <p className="font-semibold">{student.hearAboutUs || 'N/A'}</p>
               </div>
-              {student.hearAboutUs === 'Other' && student.hearAboutUsOther && (
-                <div>
-                  <p className="text-gray-500 text-sm">Details</p>
-                  <p className="font-semibold">{student.hearAboutUsOther}</p>
-                </div>
-              )}
             </div>
           </div>
         </div>

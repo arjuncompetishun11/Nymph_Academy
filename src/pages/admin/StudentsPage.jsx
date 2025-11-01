@@ -133,14 +133,6 @@ const StudentsPage = () => {
         processedData.dateOfBirth = new Date(processedData.dateOfBirth).toLocaleDateString();
       }
       
-      // Combine hearAboutUs with hearAboutUsOther if "Other" is selected
-      if (processedData.hearAboutUs === 'Other' && processedData.hearAboutUsOther) {
-        processedData.hearAboutUs = `Other: ${processedData.hearAboutUsOther}`;
-        delete processedData.hearAboutUsOther;
-      } else {
-        delete processedData.hearAboutUsOther;
-      }
-      
       // Remove the id field which is added separately
       delete processedData.id;
       
