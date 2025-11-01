@@ -229,6 +229,22 @@ const StudentDetailPage = () => {
               </div>
             </div>
           </div>
+          
+          <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+            <h3 className="font-semibold text-indigo-800 mb-3">How Heard About Us</h3>
+            <div className="space-y-2">
+              <div>
+                <p className="text-gray-500 text-sm">Source</p>
+                <p className="font-semibold">{student.hearAboutUs || 'N/A'}</p>
+              </div>
+              {student.hearAboutUs === 'Other' && student.hearAboutUsOther && (
+                <div>
+                  <p className="text-gray-500 text-sm">Details</p>
+                  <p className="font-semibold">{student.hearAboutUsOther}</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         
         <div className="p-6 bg-gray-50">
