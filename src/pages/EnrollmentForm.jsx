@@ -653,13 +653,27 @@ const EnrollmentForm = () => {
                   <option value="8">Class 8</option>
                   <option value="9">Class 9</option>
                   <option value="10">Class 10</option>
-                  <option value="11">Class 11</option>
-                  <option value="12">Class 12</option>
                 </select>
                 {errors.classGrade && (
                   <p className="mt-1 text-sm text-red-500">
                     {errors.classGrade}
                   </p>
+                )}
+                {formData.classGrade && (
+                  <div className="mt-2">
+                    <a
+                      href={`/syllabus/Dot class ${formData.classGrade}.pdf`}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      Download Class {formData.classGrade} Syllabus
+                    </a>
+                  </div>
                 )}
               </div>
 

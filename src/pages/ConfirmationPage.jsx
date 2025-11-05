@@ -132,7 +132,9 @@ const handlePrint = () => {
               Nymph Academy DOT Enrollment Confirmation
             </h1>
             <div className="mt-3 bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-lg text-center print:hidden">
-              <p className="text-lg">Congratulations! Your enrollment is complete.</p>
+              <p className="text-lg">
+                Congratulations! Your enrollment is complete.
+              </p>
             </div>
           </div>
 
@@ -150,7 +152,9 @@ const handlePrint = () => {
           {/* Student Information Grid */}
           <div className="mb-8">
             <h2 className="text-lg font-semibold text-gray-700 mb-6 border-b-2 border-blue-100 pb-2 flex items-center">
-              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-sm">1</span>
+              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-sm">
+                1
+              </span>
               Student Information
             </h2>
 
@@ -158,39 +162,76 @@ const handlePrint = () => {
               {/* Student Details */}
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 h-full">
                 <h3 className="text-md font-semibold text-blue-700 mb-3 pb-2 border-b border-blue-200 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
                   </svg>
                   Student Details
                 </h3>
                 <div className="space-y-2">
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Name:</span>
-                    <span className="text-gray-900 font-semibold">{studentData?.fullName}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Name:
+                    </span>
+                    <span className="text-gray-900 font-semibold">
+                      {studentData?.fullName}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Email:</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Email:
+                    </span>
                     <span className="text-gray-900">{studentData?.email}</span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Class:</span>
-                    <span className="text-gray-900">Class {studentData?.classGrade}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Class:
+                    </span>
+                    <span className="text-gray-900">
+                      Class {studentData?.classGrade}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Medium:</span>
-                    <span className="text-gray-900 capitalize">{studentData?.medium}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Medium:
+                    </span>
+                    <span className="text-gray-900 capitalize">
+                      {studentData?.medium}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">School:</span>
-                    <span className="text-gray-900">{studentData?.schoolName}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      School:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.schoolName}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">DOB:</span>
-                    <span className="text-gray-900">{studentData?.dateOfBirth}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      DOB:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.dateOfBirth}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Sex:</span>
-                    <span className="text-gray-900 capitalize">{studentData?.gender}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Sex:
+                    </span>
+                    <span className="text-gray-900 capitalize">
+                      {studentData?.gender}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -198,31 +239,58 @@ const handlePrint = () => {
               {/* Mother Information */}
               <div className="bg-purple-50 p-4 rounded-lg border border-purple-100 h-full">
                 <h3 className="text-md font-semibold text-purple-700 mb-3 pb-2 border-b border-purple-200 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
                   </svg>
                   Mother Information
                 </h3>
                 <div className="space-y-2">
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Name:</span>
-                    <span className="text-gray-900">{studentData?.motherName}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Name:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.motherName}
+                    </span>
                   </div>
                   {studentData?.motherOccupation && (
                     <div className="flex">
-                      <span className="font-medium text-gray-700 w-1/3">Occupation:</span>
-                      <span className="text-gray-900">{studentData?.motherOccupation}</span>
+                      <span className="font-medium text-gray-700 w-1/3">
+                        Occupation:
+                      </span>
+                      <span className="text-gray-900">
+                        {studentData?.motherOccupation}
+                      </span>
                     </div>
                   )}
 
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Mobile:</span>
-                    <span className="text-gray-900">{studentData?.motherMobile}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Mobile:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.motherMobile}
+                    </span>
                   </div>
                   {studentData?.motherEmail && (
                     <div className="flex">
-                      <span className="font-medium text-gray-700 w-1/3">Email:</span>
-                      <span className="text-gray-900">{studentData?.motherEmail}</span>
+                      <span className="font-medium text-gray-700 w-1/3">
+                        Email:
+                      </span>
+                      <span className="text-gray-900">
+                        {studentData?.motherEmail}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -231,31 +299,58 @@ const handlePrint = () => {
               {/* Father Information */}
               <div className="bg-cyan-50 p-4 rounded-lg border border-cyan-100 h-full">
                 <h3 className="text-md font-semibold text-cyan-700 mb-3 pb-2 border-b border-cyan-200 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
                   </svg>
                   Father Information
                 </h3>
                 <div className="space-y-2">
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Name:</span>
-                    <span className="text-gray-900">{studentData?.fatherName}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Name:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.fatherName}
+                    </span>
                   </div>
                   {studentData?.fatherOccupation && (
                     <div className="flex">
-                      <span className="font-medium text-gray-700 w-1/3">Occupation:</span>
-                      <span className="text-gray-900">{studentData?.fatherOccupation}</span>
+                      <span className="font-medium text-gray-700 w-1/3">
+                        Occupation:
+                      </span>
+                      <span className="text-gray-900">
+                        {studentData?.fatherOccupation}
+                      </span>
                     </div>
                   )}
 
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Mobile:</span>
-                    <span className="text-gray-900">{studentData?.fatherMobile}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Mobile:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.fatherMobile}
+                    </span>
                   </div>
                   {studentData?.fatherEmail && (
                     <div className="flex">
-                      <span className="font-medium text-gray-700 w-1/3">Email:</span>
-                      <span className="text-gray-900">{studentData?.fatherEmail}</span>
+                      <span className="font-medium text-gray-700 w-1/3">
+                        Email:
+                      </span>
+                      <span className="text-gray-900">
+                        {studentData?.fatherEmail}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -264,27 +359,50 @@ const handlePrint = () => {
               {/* Residential Address */}
               <div className="bg-emerald-50 p-4 rounded-lg border border-emerald-100 h-full">
                 <h3 className="text-md font-semibold text-emerald-700 mb-3 pb-2 border-b border-emerald-200 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    />
                   </svg>
                   Residential Address
                 </h3>
                 <div className="space-y-2">
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Address:</span>
-                    <span className="text-gray-900">{studentData?.addressLine1}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Address:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.addressLine1}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">City:</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      City:
+                    </span>
                     <span className="text-gray-900">{studentData?.city}</span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">State:</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      State:
+                    </span>
                     <span className="text-gray-900">{studentData?.state}</span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">PIN:</span>
-                    <span className="text-gray-900">{studentData?.pincode}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      PIN:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.pincode}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -292,19 +410,38 @@ const handlePrint = () => {
               {/* Siblings */}
               <div className="bg-amber-50 p-4 rounded-lg border border-amber-100 h-full">
                 <h3 className="text-md font-semibold text-amber-700 mb-3 pb-2 border-b border-amber-200 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
                   </svg>
                   Siblings
                 </h3>
                 <div className="space-y-2">
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Brothers:</span>
-                    <span className="text-gray-900">{studentData?.numberOfBrothers || '0'}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Brothers:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.numberOfBrothers || "0"}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Sisters:</span>
-                    <span className="text-gray-900">{studentData?.numberOfSisters || '0'}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Sisters:
+                    </span>
+                    <span className="text-gray-900">
+                      {studentData?.numberOfSisters || "0"}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -312,41 +449,127 @@ const handlePrint = () => {
               {/* Enrollment Details */}
               <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 h-full">
                 <h3 className="text-md font-semibold text-gray-700 mb-3 pb-2 border-b border-gray-200 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
                   </svg>
                   Enrollment Details
                 </h3>
                 <div className="space-y-2">
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Enrolled:</span>
-                    <span className="text-gray-900">{formatDate(studentData?.enrollmentDate)}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Enrolled:
+                    </span>
+                    <span className="text-gray-900">
+                      {formatDate(studentData?.enrollmentDate)}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Paid on:</span>
-                    <span className="text-gray-900">{formatDate(studentData?.paymentDate)}</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Paid on:
+                    </span>
+                    <span className="text-gray-900">
+                      {formatDate(studentData?.paymentDate)}
+                    </span>
                   </div>
                   <div className="flex">
-                    <span className="font-medium text-gray-700 w-1/3">Status:</span>
-                    <span className="text-green-600 font-medium">Completed</span>
+                    <span className="font-medium text-gray-700 w-1/3">
+                      Status:
+                    </span>
+                    <span className="text-green-600 font-medium">
+                      Completed
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Syllabus Download Section */}
+            {studentData?.classGrade && (
+              <div className="mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-2 border-blue-200 print:hidden">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                  Download Syllabus
+                </h3>
+                <p className="text-gray-700 mb-4">
+                  Download the complete syllabus for Class{" "}
+                  {studentData.classGrade} to prepare for your DOT exam.
+                </p>
+                <a
+                  href={`/syllabus/Dot class ${studentData.classGrade}.pdf`}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300 font-semibold shadow-md"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                  Download Class {studentData.classGrade} Syllabus PDF
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Uploaded Documents */}
           <div className="mt-10">
             <h2 className="text-lg font-semibold text-gray-700 mb-6 border-b-2 border-blue-100 pb-2 flex items-center">
-              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-sm">2</span>
+              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-sm">
+                2
+              </span>
               Uploaded Documents
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
                 <h3 className="text-md font-semibold text-gray-700 mb-3 pb-2 border-b border-gray-200 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
                   </svg>
                   Student Photo
                 </h3>
@@ -367,8 +590,19 @@ const handlePrint = () => {
 
               <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
                 <h3 className="text-md font-semibold text-gray-700 mb-3 pb-2 border-b border-gray-200 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
                   </svg>
                   Payment Screenshot
                 </h3>
@@ -392,19 +626,42 @@ const handlePrint = () => {
           <div className="mt-8 pt-4 border-t border-gray-200 text-center print:hidden">
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
               <p className="text-blue-800 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
-                Please save this information for your records. A confirmation email has been sent to your registered email address.
+                Please save this information for your records. A confirmation
+                email has been sent to your registered email address.
               </p>
             </div>
-            
+
             <button
               onClick={handlePrint}
               className="mt-4 bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition duration-300 font-semibold flex items-center mx-auto"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                />
               </svg>
               Print Confirmation
             </button>
